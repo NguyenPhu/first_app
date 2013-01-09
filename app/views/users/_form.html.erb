@@ -1,0 +1,27 @@
+<%= form_for(@user) do |f| %> <!-- form_for(@user): se support cho f.label va f.text_field hieu 2 thuoc tinh :name va :email 
+Trong truong hop Edit thi form_for(@user) se tu mapping voi cac truong :name, :email
+Khi thuc hien f.submit: se truyen @user (duoi controller update dung @user = User.find(params[:id]) de truy van den current user) -->
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.text_field :email %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
